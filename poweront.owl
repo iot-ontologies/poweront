@@ -15,17 +15,15 @@
     <!ENTITY dogont "http://elite.polito.it/ontologies/dogont.owl#" >
     <!ENTITY poweront "http://elite.polito.it/ontologies/poweront.owl#" >
     <!ENTITY physical-quality "http://purl.oclc.org/NET/muo/ucum/physical-quality/" >
-    <!ENTITY powerConsumption "http://elite.polito.it/ontologies/powerConsumption.owl#" >
 ]>
 
 
-<rdf:RDF xmlns="http://elite.polito.it/ontologies/powerConsumption.owl#"
-     xml:base="http://elite.polito.it/ontologies/powerConsumption.owl"
+<rdf:RDF xmlns="http://elite.polito.it/ontologies/poweront.owl#"
+     xml:base="http://elite.polito.it/ontologies/poweront.owl"
      xmlns:physical-quality="http://purl.oclc.org/NET/muo/ucum/physical-quality/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:powerConsumption="http://elite.polito.it/ontologies/powerConsumption.owl#"
      xmlns:dogont="http://elite.polito.it/ontologies/dogont.owl#"
      xmlns:muo="http://purl.oclc.org/NET/muo/muo#"
      xmlns:poweront="http://elite.polito.it/ontologies/poweront.owl#"
