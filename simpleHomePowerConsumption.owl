@@ -6,19 +6,19 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY simpleHome "http://elite.polito.it/ontologies/simpleHome.owl#" >
     <!ENTITY poweront "http://elite.polito.it/ontologies/poweront.owl#" >
+    <!ENTITY simpleHome "http://elite.polito.it/ontologies/simpleHome.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl#"
      xml:base="http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl"
+     xmlns:poweront="http://elite.polito.it/ontologies/poweront.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:simpleHome="http://elite.polito.it/ontologies/simpleHome.owl#"
-     xmlns:poweront="http://elite.polito.it/ontologies/poweront.owl#">
+     xmlns:simpleHome="http://elite.polito.it/ontologies/simpleHome.owl#">
     <owl:Ontology rdf:about="http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl">
         <owl:imports rdf:resource="http://elite.polito.it/ontologies/poweront.owl"/>
         <owl:imports rdf:resource="http://elite.polito.it/ontologies/simpleHome.owl"/>
@@ -256,12 +256,6 @@
     
 
 
-    <!-- http://elite.polito.it/ontologies/simpleHome.owl#OffStateValue_computer1 -->
-
-    <owl:NamedIndividual rdf:about="&simpleHome;OffStateValue_computer1"/>
-    
-
-
     <!-- http://elite.polito.it/ontologies/simpleHome.owl#OffStateValue_exhaustfan1 -->
 
     <owl:NamedIndividual rdf:about="&simpleHome;OffStateValue_exhaustfan1"/>
@@ -337,12 +331,6 @@
     <!-- http://elite.polito.it/ontologies/simpleHome.owl#OffStateValue_oven1 -->
 
     <owl:NamedIndividual rdf:about="&simpleHome;OffStateValue_oven1"/>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/simpleHome.owl#OnStateValue_computer1 -->
-
-    <owl:NamedIndividual rdf:about="&simpleHome;OnStateValue_computer1"/>
     
 
 
@@ -625,12 +613,6 @@
     <!-- http://elite.polito.it/ontologies/simpleHome.owl#WindowActuator_w6_living -->
 
     <owl:NamedIndividual rdf:about="&simpleHome;WindowActuator_w6_living"/>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/simpleHome.owl#computer1 -->
-
-    <owl:NamedIndividual rdf:about="&simpleHome;computer1"/>
     
 
 
@@ -919,26 +901,6 @@
     <!-- http://elite.polito.it/ontologies/simpleHome.owl#window6_notMovingStateValue -->
 
     <owl:NamedIndividual rdf:about="&simpleHome;window6_notMovingStateValue"/>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl#computer1_living_offconsumption -->
-
-    <owl:NamedIndividual rdf:about="http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl#computer1_living_offconsumption">
-        <rdf:type rdf:resource="&poweront;GenericOffConsumption"/>
-        <poweront:whenIn rdf:resource="&simpleHome;OffStateValue_computer1"/>
-        <poweront:consumptionOf rdf:resource="&simpleHome;computer1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl#computer1_living_onconsumption -->
-
-    <owl:NamedIndividual rdf:about="http://elite.polito.it/ontologies/simpleHomePowerConsumption.owl#computer1_living_onconsumption">
-        <rdf:type rdf:resource="&poweront;ComputerOnConsumption"/>
-        <poweront:whenIn rdf:resource="&simpleHome;OnStateValue_computer1"/>
-        <poweront:consumptionOf rdf:resource="&simpleHome;computer1"/>
-    </owl:NamedIndividual>
     
 
 
