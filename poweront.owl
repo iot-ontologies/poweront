@@ -26,8 +26,8 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:dogont="http://elite.polito.it/ontologies/dogont.owl#"
      xmlns:muo="http://purl.oclc.org/NET/muo/muo#"
-     xmlns:poweront="http://elite.polito.it/ontologies/poweront.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:poweront="http://elite.polito.it/ontologies/poweront.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -49,8 +49,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License                   
 </cc:license>
-        <owl:versionInfo rdf:datatype="&xsd;string">1.0.0</owl:versionInfo>
+        <owl:priorVersion rdf:datatype="&xsd;string">1.0.0</owl:priorVersion>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1.0</owl:versionInfo>
         <terms:issued rdf:datatype="&xsd;string">2010-01-01</terms:issued>
+        <terms:modified rdf:datatype="&xsd;string">2014-07-09</terms:modified>
         <terms:rights rdf:datatype="&xsd;string">Copyright(c) 2010-2014 Dario Bonino</terms:rights>
         <terms:creator rdf:datatype="&xsd;string">Dario Bonino (dario.bonino@polito.it, dario.bonino@gmail.com)</terms:creator>
         <foaf:primaryTopic rdf:datatype="&xsd;string">Energy</foaf:primaryTopic>
@@ -90,7 +92,7 @@ limitations under the License
     <owl:ObjectProperty rdf:about="&poweront;consumptionOf">
         <rdfs:range rdf:resource="&dogont;Controllable"/>
         <rdfs:domain rdf:resource="&poweront;PowerConsumption"/>
-        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+        <owl:inverseOf rdf:resource="&poweront;hasConsumption"/>
     </owl:ObjectProperty>
     
 
@@ -100,7 +102,15 @@ limitations under the License
     <owl:ObjectProperty rdf:about="&poweront;consumptionValue">
         <rdfs:domain rdf:resource="&poweront;PowerConsumption"/>
         <rdfs:range rdf:resource="&poweront;PowerConsumptionValue"/>
-        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://elite.polito.it/ontologies/poweront.owl#hasConsumption -->
+
+    <owl:ObjectProperty rdf:about="&poweront;hasConsumption">
+        <rdfs:domain rdf:resource="&dogont;Controllable"/>
+        <rdfs:range rdf:resource="&poweront;PowerConsumption"/>
     </owl:ObjectProperty>
     
 
@@ -130,7 +140,6 @@ limitations under the License
     <owl:ObjectProperty rdf:about="&poweront;whenIn">
         <rdfs:range rdf:resource="&dogont;StateValue"/>
         <rdfs:domain rdf:resource="&poweront;PowerConsumption"/>
-        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
     </owl:ObjectProperty>
     
 
@@ -779,276 +788,10 @@ limitations under the License
     
 
 
-    <!-- http://elite.polito.it/ontologies/poweront.owl#AirConditionerOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;AirConditionerOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;AirConditioningSystem"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#AlarmClockConsumption -->
-
-    <owl:Class rdf:about="&poweront;AlarmClockConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;AlarmClock"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#AwningActuatorConsumption -->
-
-    <owl:Class rdf:about="&poweront;AwningActuatorConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;AwningActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#BoilerOnPowerConsumption -->
-
-    <owl:Class rdf:about="&poweront;BoilerOnPowerConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dogont;HeatingStateValue"/>
-                            <rdf:Description rdf:about="&dogont;OnStateValue"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Boiler"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#BuzzerOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;BuzzerOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Buzzer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#CoffeeMakerConsumption -->
-
-    <owl:Class rdf:about="&poweront;CoffeeMakerConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;CoffeeMaker"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#ComputerOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;ComputerOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Computer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#ComputerStandByConsumption -->
-
-    <owl:Class rdf:about="&poweront;ComputerStandByConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Computer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#DeepFreezerOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;DeepFreezerOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:someValuesFrom rdf:resource="&dogont;CoolingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;DeepFreezer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#DishwasherDryConsumption -->
-
-    <owl:Class rdf:about="&poweront;DishwasherDryConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Dishwasher"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#DishwasherHeatConsumption -->
-
-    <owl:Class rdf:about="&poweront;DishwasherHeatConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Dishwasher"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#DishwasherWashConsumption -->
-
-    <owl:Class rdf:about="&poweront;DishwasherWashConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Dishwasher"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#DoorActuatorMovingConsumption -->
-
-    <owl:Class rdf:about="&poweront;DoorActuatorMovingConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;DoorActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#DvdOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;DvdOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Dvd"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#ElectricCookerOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;ElectricCookerOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ElectricalCooker"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://elite.polito.it/ontologies/poweront.owl#ElectricPowerConsumption -->
 
     <owl:Class rdf:about="&poweront;ElectricPowerConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;PowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;actualConsumptionValue"/>
-                <owl:onClass rdf:resource="&poweront;PowerConsumptionValue"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;nominalConsumptionValue"/>
@@ -1063,275 +806,11 @@ limitations under the License
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#ElectricalOvenOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;ElectricalOvenOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ElectricalOven"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#FanOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;FanOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Fan"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#FridgeOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;FridgeOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Fridge"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dogont;CoolingStateValue"/>
-                            <rdf:Description rdf:about="&dogont;OnStateValue"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#GasHeaterConsumption -->
-
-    <owl:Class rdf:about="&poweront;GasHeaterConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dogont;HeatingStateValue"/>
-                            <rdf:Description rdf:about="&dogont;OnStateValue"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;GasHeater"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#GateActuatorMovingConsumption -->
-
-    <owl:Class rdf:about="&poweront;GateActuatorMovingConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;GateActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#GenericElectronicControllerConsumption -->
-
-    <owl:Class rdf:about="&poweront;GenericElectronicControllerConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dogont;HeatingAndCoolingUnit"/>
-                            <rdf:Description rdf:about="&dogont;LevelControlSwitch"/>
-                            <rdf:Description rdf:about="&dogont;PumpController"/>
-                            <rdf:Description rdf:about="&dogont;RemoteControl"/>
-                            <rdf:Description rdf:about="&dogont;SceneSelector"/>
-                            <rdf:Description rdf:about="&dogont;ShadeController"/>
-                            <rdf:Description rdf:about="&dogont;SingleScenarioControl"/>
-                            <rdf:Description rdf:about="&dogont;Thermostat"/>
-                            <rdf:Description rdf:about="&dogont;ToggleRelay"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#GenericNotMovingConsumption -->
-
-    <owl:Class rdf:about="&poweront;GenericNotMovingConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:someValuesFrom rdf:resource="&dogont;Controllable"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dogont;DownTripleStateValue"/>
-                            <rdf:Description rdf:about="&dogont;NotMovingStateValue"/>
-                            <rdf:Description rdf:about="&dogont;RestTripleStateValue"/>
-                            <rdf:Description rdf:about="&dogont;UpTripleStateValue"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#GenericOffConsumption -->
-
-    <owl:Class rdf:about="&poweront;GenericOffConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:someValuesFrom rdf:resource="&dogont;Controllable"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OffStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#HiFiOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;HiFiOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;HiFi"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#HotPlateOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;HotPlateOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Hotplate"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#LampOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;LampOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Lamp"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#MicrowaveOvenOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;MicrowaveOvenOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MicrowaveOven"/>
+                <owl:onProperty rdf:resource="&poweront;actualConsumptionValue"/>
+                <owl:onClass rdf:resource="&poweront;PowerConsumptionValue"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1355,205 +834,11 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;PowerConsumptionValue">
         <rdfs:subClassOf rdf:resource="&muo;QualityValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#PrinterPrintConsumption -->
-
-    <owl:Class rdf:about="&poweront;PrinterPrintConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Printer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#PumpOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;PumpOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Pump"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#RadioOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;RadioOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Radio"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#ShadeActuatorConsumption -->
-
-    <owl:Class rdf:about="&poweront;ShadeActuatorConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ShadeActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#ShutterActuatorMovingConsumption -->
-
-    <owl:Class rdf:about="&poweront;ShutterActuatorMovingConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dogont;LoweringStateValue"/>
-                            <rdf:Description rdf:about="&dogont;RaisingStateValue"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ShutterActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#TvOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;TvOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Tv"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#VentilatorConsumption -->
-
-    <owl:Class rdf:about="&poweront;VentilatorConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Ventilator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#WashingMachineOnConsumption -->
-
-    <owl:Class rdf:about="&poweront;WashingMachineOnConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;WashingMachine"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#WindowActuatorMovingConsumption -->
-
-    <owl:Class rdf:about="&poweront;WindowActuatorMovingConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;WindowActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://elite.polito.it/ontologies/poweront.owl#WirelessPhoneTransmitConsumption -->
-
-    <owl:Class rdf:about="&poweront;WirelessPhoneTransmitConsumption">
-        <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;WirelessPhone"/>
+                <owl:onProperty rdf:resource="&muo;measuredIn"/>
+                <owl:onClass rdf:resource="&muo;UnitOfMeasurement"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1582,6 +867,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;airConditionerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1313.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1591,6 +877,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;awningActuatorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1600,6 +887,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;blenderTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">295.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1609,6 +897,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;bugZapperTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">40.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1618,6 +907,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;buzzerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">3.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1627,6 +917,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;carBatteryChargerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">150.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1636,6 +927,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;carEngineHeaterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">600.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1645,6 +937,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;cbRadioTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">5.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1654,6 +947,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;cdPlayerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">35.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1663,6 +957,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;clockTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">3.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1672,6 +967,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;clothesDryerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">4750.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1681,6 +977,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;coffeeMakerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">941.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1690,6 +987,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;coffeePotTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1699,6 +997,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;compactFluorescentLightTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">18.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1708,6 +1007,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;compactorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">400.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1717,6 +1017,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;computerOnTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">300.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1726,6 +1027,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;computerStandByTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">20.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1735,6 +1037,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;curlingIronTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1744,6 +1047,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;dehumidifierTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">250.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1753,6 +1057,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;dishWasherDryCycleTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1325.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1762,6 +1067,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;dishWasherHeatWaterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2000.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1771,6 +1077,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;dishWasherWashCycleTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1780,6 +1087,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;disposalTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">435.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1789,6 +1097,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;doorActuatorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">350.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1798,6 +1107,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;drillTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">750.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1807,6 +1117,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;electricBlanketTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">188.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1816,6 +1127,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;evaporativeCoolerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">400.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1825,6 +1137,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fanAtticTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">575.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1834,6 +1147,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fanCeilingTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">65.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1843,6 +1157,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fanFloorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">113.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1852,6 +1167,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fanTableTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">25.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1861,6 +1177,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fanWholeHouseTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">350.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1870,6 +1187,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fluorescentLightTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">40.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1879,6 +1197,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;freezerAutomaticDefrostTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">440.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1888,6 +1207,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;freezerManualDefrostTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">350.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1897,6 +1217,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;fryPanTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1906,6 +1227,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;furnaceBlowerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">650.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1915,6 +1237,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;gasClothesDryerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">400.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1924,6 +1247,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;gasHeaterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">750.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1933,6 +1257,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;gateActuatorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">350.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1942,6 +1267,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;genericElectronicControllerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1951,6 +1277,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;hairdryerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1250.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1960,6 +1287,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;hdCableBoxTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">45.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1969,6 +1297,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;heatLampTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">250.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1978,6 +1307,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;heatTapeTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">180.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1987,6 +1317,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;heaterHotTubTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -1996,6 +1327,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;hedgeTrimmerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">450.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2005,6 +1337,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;hifiTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">250.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2014,6 +1347,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;hotPlateTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2023,6 +1357,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;humidifierTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">177.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2032,6 +1367,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;incandescenseLightTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">68.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2041,6 +1377,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;ironTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">867.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2050,6 +1387,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;jacuzziTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2059,6 +1397,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;lampOnTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">40.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2068,6 +1407,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;ledLightTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2077,6 +1417,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;mixerhandTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">100.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2086,6 +1427,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;monitorCRT17TypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">90.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2095,6 +1437,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;monitorLCD17TypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">40.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2104,6 +1447,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;motor1hpTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1000.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2113,6 +1457,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;mowerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2122,6 +1467,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;nightLightTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">5.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2131,6 +1477,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;nintendoWiiTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">18.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2140,6 +1487,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;outdoorLightTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">120.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2149,6 +1497,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;ovenBroilerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">3000.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2158,6 +1507,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;ovenConvectionTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2417.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2167,6 +1517,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;ovenMicrowaveTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1510.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2176,6 +1527,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;ovenSelfCleaningTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2464.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2185,6 +1537,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;playstation2TypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">30.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2194,6 +1547,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;playstation3TypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">194.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2203,6 +1557,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;pondPumpTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">560.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2212,6 +1567,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;popcornPopperTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">250.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2221,6 +1577,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;portableHeaterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2230,6 +1587,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;portableStereoTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">30.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2239,6 +1597,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;powerToolsTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1800.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2248,6 +1607,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;printerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">100.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2257,6 +1617,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;radioClockTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">3.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2266,6 +1627,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;radioTelephoneTransmitTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">45.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2275,6 +1637,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;radioTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">40.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2284,6 +1647,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;rangeBurnerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">650.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2293,6 +1657,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;rangeOvenTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2660.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2302,6 +1667,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;rangeSelfCleaningTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">2500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2311,6 +1677,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;refrigerator12ftTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">110.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2320,6 +1687,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;refrigerator18ftTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">400.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2329,6 +1697,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;refrigeratorFreezerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">450.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2338,6 +1707,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;sanderTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1100.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2347,6 +1717,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;satelliteDishAndReceiverTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">360.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2356,6 +1727,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;satelliteDishTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">30.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2365,6 +1737,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;sawTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2374,6 +1747,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;sewingMachineTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">150.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2383,6 +1757,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;shadeActuatorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">100.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2392,6 +1767,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;shaverTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">15.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2401,6 +1777,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;shutterMotorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2410,6 +1787,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;slowCookerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">150.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2419,6 +1797,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;stockTankTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">100.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2428,6 +1807,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;televisionTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2437,6 +1817,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;tinyAssWindowUnitTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2446,6 +1827,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;toasterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1267.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2455,6 +1837,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;typewriterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2464,6 +1847,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;vacuumCleanerTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1000.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2473,6 +1857,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;vcrDvdTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">30.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2482,6 +1867,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;waflleIronTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">1200.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2491,6 +1877,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;washingMachineTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">400.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2500,6 +1887,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;waterBedHeaterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">544.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2509,6 +1897,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;waterHeaterQuickTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">4267.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2518,6 +1907,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;weedHeaterTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">500.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2527,6 +1917,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;windowActuatorTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">75.6</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2536,6 +1927,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;xbox360TypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">185.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2545,6 +1937,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;xboxTypicalConsumptionValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">70.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
@@ -2554,6 +1947,7 @@ limitations under the License
     <owl:NamedIndividual rdf:about="&poweront;zeroValue">
         <rdf:type rdf:resource="&poweront;PowerConsumptionValue"/>
         <powerValue rdf:datatype="&xsd;double">0.0</powerValue>
+        <muo:measuredIn rdf:resource="&power;Watt"/>
     </owl:NamedIndividual>
     
 
