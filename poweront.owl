@@ -785,12 +785,6 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;airConditionerTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;AirConditioningSystem"/>
             </owl:Restriction>
@@ -809,12 +803,6 @@ limitations under the License
                 <owl:allValuesFrom rdf:resource="&dogont;AlarmClock"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;radioClockTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -827,12 +815,6 @@ limitations under the License
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;AwningActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;awningActuatorTypicalConsumptionValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -851,18 +833,6 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;heaterHotTubTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Boiler"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -872,6 +842,12 @@ limitations under the License
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;Boiler"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -884,20 +860,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;Buzzer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;buzzerTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;whenIn"/>
+                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -914,12 +884,6 @@ limitations under the License
                 <owl:allValuesFrom rdf:resource="&dogont;CoffeeMaker"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;coffeeMakerTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -932,12 +896,6 @@ limitations under the License
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;Computer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;computerOnTypicalConsumptionValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -954,12 +912,6 @@ limitations under the License
                 <owl:allValuesFrom rdf:resource="&dogont;Computer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;computerStandByTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -970,20 +922,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;DeepFreezer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:someValuesFrom rdf:resource="&dogont;CoolingStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;freezerAutomaticDefrostTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;DeepFreezer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1000,12 +946,6 @@ limitations under the License
                 <owl:allValuesFrom rdf:resource="&dogont;Dishwasher"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;dishWasherDryCycleTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1014,12 +954,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;DishwasherHeatConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;dishWasherHeatWaterTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
@@ -1040,12 +974,6 @@ limitations under the License
                 <owl:allValuesFrom rdf:resource="&dogont;Dishwasher"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;dishWasherWashCycleTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1056,20 +984,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;doorActuatorTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;DoorActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;DoorActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1082,20 +1004,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;vcrDvdTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;Dvd"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;whenIn"/>
+                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1108,20 +1024,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ElectricalCooker"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;rangeBurnerTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;ElectricalCooker"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1134,9 +1044,9 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;PowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;actualConsumptionValue"/>
                 <owl:onClass rdf:resource="&poweront;PowerConsumptionValue"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1148,9 +1058,9 @@ limitations under the License
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;actualConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
                 <owl:onClass rdf:resource="&poweront;PowerConsumptionValue"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1163,20 +1073,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ElectricalOven"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;ovenConvectionTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;ElectricalOven"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1187,12 +1091,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;FanOnConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;fanCeilingTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
@@ -1215,6 +1113,12 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;Fridge"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -1226,18 +1130,6 @@ limitations under the License
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Fridge"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;refrigerator18ftTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1246,18 +1138,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;GasHeaterConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;gasHeaterTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;GasHeater"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
@@ -1271,6 +1151,12 @@ limitations under the License
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;GasHeater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1281,20 +1167,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;GateActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;gateActuatorTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;GateActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1305,12 +1185,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;GenericElectronicControllerConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;genericElectronicControllerTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
@@ -1347,12 +1221,6 @@ limitations under the License
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;zeroValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -1376,20 +1244,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OffStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;zeroValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:someValuesFrom rdf:resource="&dogont;Controllable"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;whenIn"/>
+                <owl:allValuesFrom rdf:resource="&dogont;OffStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1400,12 +1262,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;HiFiOnConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;hifiTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
@@ -1428,12 +1284,6 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;hotPlateTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
@@ -1454,20 +1304,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;lampOnTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;Lamp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;whenIn"/>
+                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1482,12 +1326,6 @@ limitations under the License
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;ovenMicrowaveTypicalConsumptionValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1517,12 +1355,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;PowerConsumptionValue">
         <rdfs:subClassOf rdf:resource="&muo;QualityValue"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&muo;measuredIn"/>
-                <owl:hasValue rdf:resource="&power;Watt"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1535,12 +1367,6 @@ limitations under the License
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;Printer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;printerTypicalConsumptionValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1559,20 +1385,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;Pump"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;pondPumpTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;Pump"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1591,12 +1411,6 @@ limitations under the License
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;radioTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;Radio"/>
             </owl:Restriction>
@@ -1611,20 +1425,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
-                <owl:allValuesFrom rdf:resource="&dogont;ShadeActuator"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;shadeActuatorTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
+                <owl:allValuesFrom rdf:resource="&dogont;ShadeActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1654,12 +1462,6 @@ limitations under the License
                 <owl:allValuesFrom rdf:resource="&dogont;ShutterActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;shutterMotorTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1676,12 +1478,6 @@ limitations under the License
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;televisionTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
                 <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
@@ -1694,12 +1490,6 @@ limitations under the License
 
     <owl:Class rdf:about="&poweront;VentilatorConsumption">
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;fanFloorTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;whenIn"/>
@@ -1722,20 +1512,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;washingMachineTypicalConsumptionValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;WashingMachine"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&poweront;whenIn"/>
+                <owl:allValuesFrom rdf:resource="&dogont;OnStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1748,20 +1532,14 @@ limitations under the License
         <rdfs:subClassOf rdf:resource="&poweront;ElectricPowerConsumption"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;whenIn"/>
-                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;WindowActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;windowActuatorTypicalConsumptionValue"/>
+                <owl:onProperty rdf:resource="&poweront;whenIn"/>
+                <owl:allValuesFrom rdf:resource="&dogont;MovingStateValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1776,12 +1554,6 @@ limitations under the License
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&poweront;consumptionOf"/>
                 <owl:allValuesFrom rdf:resource="&dogont;WirelessPhone"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&poweront;typicalConsumptionValue"/>
-                <owl:hasValue rdf:resource="&poweront;radioTelephoneTransmitTypicalConsumptionValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
